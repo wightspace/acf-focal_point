@@ -148,20 +148,14 @@ class acf_field_focal_point extends acf_field {
 		// Get set image id
 		$id = (isset($field['value']['id'])) ? $field['value']['id'] : '';
 
-
 		// data vars
 		$data = array(
-			'top'		=>	isset($field['value']['top']) ? $field['value']['top'] : '',
-			'left'		=>	isset($field['value']['left']) ? $field['value']['left'] : '',
-			'right'		=>	isset($field['value']['right']) ? $field['value']['right'] : '',
-			'bottom'	=>	isset($field['value']['bottom']) ? $field['value']['bottom'] : '',
+			'top' =>	isset($field['value']['top']) ? $field['value']['top'] : '',
+			'left' =>	isset($field['value']['left']) ? $field['value']['left'] : '',
 		);
-		
 
-		
 		// If we already have an image set...
 		if ($id) {
-			
 			// Get image by ID, in size set via options
 			$img = wp_get_attachment_image_src($id, $field['preview_size']);
 						
@@ -174,30 +168,41 @@ class acf_field_focal_point extends acf_field {
 		// And set src
 		$url = ($id) ? $img[0] : '';
 		
-		
 		// create Field HTML
 		?>
-<div class="acf-focal_point <?php echo $is_active; ?>" data-preview_size="<?php echo $field['preview_size']; ?>">
+			<div class="acf-focal_point <?php echo $is_active; ?>" data-preview_size="<?php echo $field['preview_size']; ?>">
 
-	<input class="acf-focal_point-id" type="hidden" name="<?php echo $field['name']; ?>[id]" value="<?php echo $id; ?>" />
+				<input class="acf-focal_point-id" type="hidden" name="<?php echo $field['name']; ?>[id]" value="<?php echo $id; ?>" />
 
-	<?php foreach ($data as $k => $d): ?>
-		<input class="acf-focal_point-<?php echo $k ?>" type="hidden" name="<?php echo $field['name']; ?>[<?php echo $k ?>]" value="<?php echo $d ?>" />
-	<?php endforeach ?>
+				<?php foreach ($data as $k => $d): ?>
+					<input class="acf-focal_point-<?php echo $k ?>" type="hidden" name="<?php echo $field['name']; ?>[<?php echo $k ?>]" value="<?php echo $d ?>" />
+				<?php endforeach ?>
+				
+				<div class="parent">
+					<div class="div1 has-image controls">
+						<span class="acf-button-delete acf-icon -cancel acf-icon-cancel dark" data-name="remove"></span>
+						<img draggable="false" class="acf-focal_point-image" src="<?php echo $url; ?>" />
+						<div class="dot"><span class="dashicons dashicons-visibility"></span></div>
+					</div>
+					
+					<div class="div2 preview preview-2-1">
+						<img src="<?php echo $url; ?>" />
+					</div>
+					<div class="div3 preview preview-1-2" >
+						<img src="<?php echo $url; ?>" />
+					</div>
+					<div class="div4 preview preview-1-1" >
+						<img src="<?php echo $url; ?>" />
+					</div>
+				</div>
 
-	<div class="has-image">
-		<span class="acf-button-delete acf-icon -cancel acf-icon-cancel dark" data-name="remove"></span>
-		<img class="acf-focal_point-image" src="<?php echo $url; ?>" />
-		<canvas class="acf-focal_point-canvas"></canvas>
-	</div>
+				<div class="clear"></div>
 
-	<div class="clear"></div>
+				<div class="no-image">
+					<p><?php _e('No image selected','acf'); ?> <input type="button" class="button add-image" value="<?php _e('Add Image','acf'); ?>" />
+				</div>
 
-	<div class="no-image">
-		<p><?php _e('No image selected','acf'); ?> <input type="button" class="button add-image" value="<?php _e('Add Image','acf'); ?>" />
-	</div>
-
-</div><?php
+			</div><?php
 	}
 	
 		

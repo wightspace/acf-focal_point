@@ -1,15 +1,8 @@
-.acf-focal_point-canvas {
-	width: 100%;
-	cursor: crosshair;
-}
-
-.acf-focal_point-image {
-	display: none;
-}
 .acf-focal_point .has-image {
 	display: none;
 	position: relative;
 }
+
 .acf-focal_point .acf-button-delete {
 	position: absolute;
 	top: -11px;
@@ -17,16 +10,20 @@
 	z-index: 1;
 	cursor: pointer;
 }
+
 .acf-focal_point .acf-icon {
 	opacity: 0;
 	transition: .25s ease-in-out;
 }
+
 .acf-focal_point .acf-icon:hover {
 	color: #D54E21;
 }
+
 .acf-focal_point .has-image:hover .acf-icon {
 	opacity: 1;
 }
+
 .acf-focal_point.active .no-image {
 	display: none;
 }
@@ -34,4 +31,73 @@
 .acf-focal_point.active .has-image {
 	display: block;
 	float: left;
+}
+
+.acf-focal_point.active .parent {
+	display: grid;
+}
+
+.acf-focal_point .parent img {
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.acf-focal_point .controls img {
+	object-fit: cover;
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+}
+
+.acf-focal_point .dot {
+	cursor: pointer;
+	position: absolute;
+	transform-origin: center;
+	width: 20px;
+	height: 20px;
+	background: rgba(0, 0, 0, 0.132);
+	border-radius: 20px;
+	border: 2px solid white;
+	box-shadow: 0 0 4px black;
+}
+
+.acf-focal_point .dot .dashicons {
+	color: white;
+}
+
+.acf-focal_point .dot:hover {
+	background: black;
+}
+
+.acf-focal_point .parent {
+	display: none;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 5px;
+	grid-row-gap: 5px;
+}
+
+.acf-focal_point .preview {
+	position: relative;
+}
+
+.acf-focal_point .div1 {
+	grid-area: 1 / 1 / 4 / 2;
+}
+
+.acf-focal_point .div2 {
+	grid-area: 1 / 2 / 2 / 5;
+}
+
+.acf-focal_point .div3 {
+	grid-area: 2 / 2 / 4 / 3;
+}
+
+.acf-focal_point .div4 {
+	grid-area: 2 / 3 / 4 / 5;
 }
